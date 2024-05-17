@@ -1,0 +1,48 @@
+class Cliente:
+    def __init__(self, id_cliente, nome, endereco, telefone):
+        self.id_cliente = id_cliente
+        self.nome = nome
+        self.endereco = endereco
+        self.telefone = telefone
+
+    def __str__(self):
+        return f"Cliente: {self.nome}, ID: {self.id_cliente}, Endereço: {self.endereco}, Telefone: {self.telefone}"
+
+class Conta:
+    def __init__(self, numero_conta, titular, saldo=0, tipo_conta="Corrente"):
+        self.numero_conta = numero_conta
+        self.titular = titular
+        self.saldo = saldo
+        self.tipo_conta = tipo_conta
+
+    def __str__(self):
+        return f"Conta: {self.numero_conta}, Titular: {self.titular}, Saldo: {self.saldo}, Tipo: {self.tipo_conta}"
+
+    def depositar(self, valor):
+        self.saldo += valor
+
+    def sacar(self, valor):
+        if self.saldo >= valor:
+            self.saldo -= valor
+            return True
+        else:
+            print("Saldo insuficiente.")
+            return False
+
+# Exemplo de uso:
+cliente1 = Cliente(1, "João", "Rua A, 123", "1234-5678")
+cliente2 = Cliente(2, "Maria", "Rua B, 456", "9876-5432")
+
+conta1 = Conta(1001, cliente1)
+conta2 = Conta(1002, cliente2, tipo_conta="Poupança")
+
+print(cliente1)
+print(cliente2)
+
+print(conta1)
+print(conta2)
+
+conta1.depositar(1000)
+conta1.sacar(500)
+
+print(conta1)
